@@ -1,0 +1,71 @@
+<div class="mat-card-container">
+  <mat-card class="manager-dashboard-card">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"></div>
+      <mat-card-title>Admin Dashboard</mat-card-title>
+      <mat-card-subtitle>Overview of the system</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Welcome to Admin dashboard! Here you can user status and manage users.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="mat-card-container">
+
+  <mat-card class="mat-card" [routerLink]="['/admin/manage-users']" >
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faUsers" size="2x"></fa-icon></div>
+      <mat-card-title>&nbsp;&nbsp;&nbsp;{{ totalUsers }}</mat-card-title>
+      <mat-card-subtitle>&nbsp;&nbsp;&nbsp;Total Users</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+
+ 
+  <mat-card class="mat-card" [routerLink]="['/admin/manage-users']"  [queryParams]="{ filter: 'Admin' }">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faUserShield" size="2x"></fa-icon></div>
+      <mat-card-title>&nbsp;&nbsp;&nbsp;{{ totalAdmin }}</mat-card-title>
+      <mat-card-subtitle>&nbsp;&nbsp;&nbsp;Admin</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+  <mat-card class="mat-card" [routerLink]="['/admin/manage-users']" [queryParams]="{ filter: 'Manager' }">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faUserTie" size="2x"></fa-icon></div>
+      <mat-card-title>&nbsp;&nbsp;&nbsp;{{ totalManager }}</mat-card-title>
+      <mat-card-subtitle>&nbsp;&nbsp;&nbsp;Manager</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+  <mat-card class="mat-card" [routerLink]="['/admin/manage-users']" [queryParams]="{ filter: 'Employee' }">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faUserCircle" size="2x"></fa-icon></div>
+      <mat-card-title>&nbsp;&nbsp;&nbsp;{{ totalEmployee }}</mat-card-title>
+      <mat-card-subtitle>&nbsp;&nbsp;&nbsp;Employee</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+  <mat-card class="mat-card" [routerLink]="['/admin/manage-users']" [queryParams]="{ filter: 'Requester' }">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar" ><fa-icon [icon]="faUserAlt" size="2x"></fa-icon></div>
+      <mat-card-title>&nbsp;&nbsp;&nbsp;{{ totalRequester }}</mat-card-title>
+      <mat-card-subtitle>&nbsp;&nbsp;&nbsp;Requester</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mat-card" [routerLink]="['/admin/manage-users']" [queryParams]="{ filter: 'No roles' }">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faBan" size="2x"></fa-icon></div>
+      <mat-card-title>&nbsp;&nbsp;&nbsp;{{usersWithNoRole}}</mat-card-title>
+      <mat-card-subtitle>&nbsp;&nbsp;&nbsp;No roles</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+
+
+</div>

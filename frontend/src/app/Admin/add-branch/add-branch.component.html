@@ -1,0 +1,43 @@
+<div class="dialog-backdrop">
+  <div class="dialog-container">
+    <h2>Edit Branch Information</h2>
+    <form [formGroup]="addBranchForm" (ngSubmit)="onSubmit()">
+      <!-- Branch Code -->
+      <div class="form-group">
+        <label for="branchCode">Branch Code</label>
+        <input
+          id="branchCode"
+          formControlName="branchCode"
+          placeholder="Please enter the branch code"
+        />
+      </div>
+
+      <!-- Branch Name -->
+      <div class="form-group">
+        <label for="branchName">Branch Name</label>
+        <input
+          id="branchName"
+          formControlName="branchName"
+          placeholder="Please enter the branch name"
+        />
+      </div>
+      <!--Branch Address-->
+      <div class="form-group">
+        <label for="branchAddress">Branch Address</label>
+        <input
+          id="branchAddress"
+          formControlName="branchAddress"
+          placeholder="Please enter the branch address"
+        />
+      </div>
+      <div *ngIf="errorMessages" class="form-error">
+        <p>{{ errorMessages }}</p>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Save</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

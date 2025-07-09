@@ -1,0 +1,102 @@
+<div class="dialog-backdrop">
+  <div class="dialog-container">
+    <h2>Edit User Information</h2>
+    <form [formGroup]="editUserForm" (ngSubmit)="saveChanges()">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          formControlName="firstname"
+          placeholder="Please enter the firstname"
+        />
+      </div>
+
+      <!-- Middle Name -->
+      <div class="form-group">
+        <label for="middleName">Middle Name</label>
+        <input
+          id="middleName"
+          formControlName="middlename"
+          placeholder="Please enter the middlename"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          formControlName="lastname"
+          placeholder="Please enter the lastname"
+        />
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          formControlName="phonenumber"
+          placeholder="Please enter the phone number"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">email:</label>
+        <input
+          id="email"
+          formControlName="email"
+          type="email"
+          placeholder="Please enter email"
+        />
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          formControlName="username"
+          placeholder="Please enter the username"
+        />
+      </div>
+      <div>
+        <label for="officetype">Choose Location:</label>
+        <select
+          id="officeType"
+          formControlName="officetype"
+          (change)="onOfficeTypeChange($event)"
+        >
+          <option value="" disabled>Select office type</option>
+          <option value="head_office" [selected]="data.user.officetype === 'head_office'">
+            Head Office
+          </option>
+          <option value="branch" [selected]="data.user.officetype === 'branch'">
+            Branch
+          </option>
+        </select>
+        
+        <br>
+      </div>
+      
+      <div *ngIf="showBranchSelect">
+        <label for="branch">Select Branch:</label>
+        <select id="branch" formControlName="branch" (change)="onBranchChange($event)"  >>
+          <option *ngFor="let branch of branches" [value]="branch.id" [selected]="branch.id === data.user.branchid">
+            {{ branch.branchCode }} - {{ branch.branchName }}
+          </option>
+        </select>
+      </div>
+      
+      
+
+      <div *ngIf="errorMessages" class="form-error">
+        <p>{{ errorMessages }}</p>
+      </div>
+
+      <div class="actions">
+        <button type="submit" >Save</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

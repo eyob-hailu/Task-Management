@@ -1,0 +1,59 @@
+<div class="dialog-backdrop">
+  <div class="dialog-container">
+    <h2>Edit Task Information</h2>
+    <form [formGroup]="editTaskForm" (ngSubmit)="saveChanges()">
+      <!-- Task Title -->
+      <div class="form-group">
+        <label for="title">Task Title</label>
+        <input
+          id="title"
+          formControlName="title"
+          placeholder="Please enter the task title"
+        />
+      </div>
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Please enter the task description"
+        >
+        </textarea>
+      </div>
+
+      <!-- Priority -->
+      <!-- Priority -->
+      <div class="form-group">
+        <label for="priority">Priority</label>
+        <select id="priority" formControlName="priority">
+          <option value="" disabled selected>Select priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <!-- Deadline -->
+      <div class="form-group">
+        <label for="deadline">Deadline</label>
+        <input
+          id="deadline"
+          formControlName="deadline"
+          type="date"
+          placeholder="Please select the task deadline"
+          [min]="minDate"
+          (keydown)="preventTyping($event)"
+        />
+      </div>
+
+      <div *ngIf="errorMessages" class="form-error">
+        <p>{{ errorMessages }}</p>
+      </div>
+
+      <div class="actions">
+        <button type="submit" (click)="saveChanges()">Save</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

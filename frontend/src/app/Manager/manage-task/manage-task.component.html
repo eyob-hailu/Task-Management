@@ -1,0 +1,115 @@
+<div class="manage-tasks-container">
+  <div>
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filter Tasks"
+      />
+    </mat-form-field>
+    &nbsp;
+    <button (click)="exportToPDF()">PDF</button> &nbsp;
+    <button (click)="exportToExcel()">Excel</button>&nbsp;
+    <button (click)="exportToCSV()">CSV</button>
+  </div>
+
+  <div class="tasks-table">
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    class="mat-elevation-z8 tasks-table"
+  >
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td mat-cell *matCellDef="let task">{{ task.description }}</td>
+    </ng-container>
+
+    <!-- Priority Column -->
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+      <td mat-cell *matCellDef="let task">{{ task.priority }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let task">{{ task.status }}</td>
+    </ng-container>
+
+    <!-- Deadline Column -->
+    <ng-container matColumnDef="deadline">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Deadline</th>
+      <td mat-cell *matCellDef="let task">{{ task.deadline }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>branch</th>
+      <td mat-cell *matCellDef="let task">{{task.branchCode}}&nbsp;-&nbsp;{{ task.branchName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="requester">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Requester</th>
+      <td mat-cell *matCellDef="let task">{{ task.requestorUsername }}</td>
+    </ng-container>
+
+    <!-- Assignee Column -->
+    <ng-container matColumnDef="assignee">
+      <th mat-header-cell *matHeaderCellDef>Assignee</th>
+      <td mat-cell *matCellDef="let task">
+        <select
+          [(ngModel)]="task.assignedUserId"
+          [disabled]="task.status === 'Completed'"
+        >
+          <option value="Unassigned" [selected]="task.assignedUserId === null">
+            Unassigned
+          </option>
+          <option *ngFor="let user of users" [value]="user.id">
+            {{ user.username }}
+          </option>
+        </select>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="remark">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Remark</th>
+      <td mat-cell *matCellDef="let task">{{task.remark }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let task">
+        <button
+          mat-icon-button
+          title="Assign"
+          *ngIf="task.status === 'Assigned' || task.status === 'Pending'"
+          (click)="assignTask(task)"
+        >
+          <fa-icon [icon]="faUserTag"></fa-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Table Header & Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  </div>
+
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="totalTasks"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+  ></mat-paginator>
+</div>

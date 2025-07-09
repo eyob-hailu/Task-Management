@@ -1,0 +1,173 @@
+/* Backdrop */
+p {
+  color: red;
+}
+
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Semi-transparent background */
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-in-out;
+  /* Smooth fade-in */
+}
+
+/* Modal Container */
+.dialog-container {
+  width: 100%;
+  max-width: 500px;
+  /* Restrict modal width */
+  background-color: #ffffff;
+  /* White background for contrast */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  /* Drop shadow for depth */
+  padding: 20px;
+  position: relative;
+  animation: slideDown 0.3s ease-in-out;
+  /* Slide-in animation */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Modal Header */
+h2 {
+  margin: 0 0 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  border-bottom: 2px solid #eaeaea;
+  /* Separator */
+  padding-bottom: 10px;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  /* Smooth interactions */
+  background-color: #f9f9f9;
+}
+
+input:focus {
+  border-color: #007bff;
+  /* Blue focus border */
+  outline: none;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  /* Focus glow */
+}
+
+/* Actions (Buttons) */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  /* Smooth hover effect */
+}
+
+/* Save Button */
+button[type='submit'] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button[type='submit']:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  /* Subtle lift */
+  box-shadow: 0 4px 10px rgba(0, 91, 187, 0.3);
+  /* Hover shadow */
+}
+
+/* Cancel Button */
+button[type='button'] {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+button[type='button']:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+  /* Subtle lift */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Hover shadow */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dialog-container {
+    max-width: 90%;
+    /* Adjust modal width for smaller screens */
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}

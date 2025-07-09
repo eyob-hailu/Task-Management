@@ -1,0 +1,22 @@
+<div *ngIf="isLoading">Loading roles...</div>
+<div *ngIf="!isLoading">
+  <h2>Assign Role to {{ data.user.firstname }} {{ data.user.lastname }}</h2>
+
+  <!-- Select section -->
+  <label>Select Role:</label>
+  <div class="select-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Roles</mat-label>
+      <mat-select [value]="selectedRoles" (selectionChange)="onRoleSelect($event.value)">
+        <mat-option [value]="null">Select Role (Revoke)</mat-option> 
+        <mat-option *ngFor="let role of filteredRoles" [value]="role.id">
+          {{ role.role }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="button-container">
+    <button (click)="assignRoles()">Assign</button>
+    <button (click)="closeModal()">Cancel</button>
+  </div>
+</div>

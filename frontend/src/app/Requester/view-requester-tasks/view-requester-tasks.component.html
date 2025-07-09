@@ -1,0 +1,131 @@
+<div class="manage-tasks-container">
+  <div>
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filter Tasks"
+      />
+    </mat-form-field>
+    &nbsp;
+    <button (click)="exportToPDF()">PDF</button> &nbsp;
+    <button (click)="exportToExcel()">Excel</button>&nbsp;
+
+  </div>
+  <div>
+    <mat-checkbox
+      *ngFor="let column of allColumns"
+      (change)="toggleColumnVisibility(column, $event)"
+      [checked]="displayedColumns.includes(column)"
+    >
+      {{ column | titlecase }}
+    </mat-checkbox>
+    <button (click)="resetColumns()">Reset to Default Columns</button>
+  </div>
+
+  <div class="table-container">
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    class="mat-elevation-z8 tasks-table"
+  >
+    <!-- Title Column -->
+    <ng-container matColumnDef="title" class="title-column">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="title-column">Title</th>
+      <td mat-cell *matCellDef="let task" class="title-column">{{ task.title }}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description" class="description-column" style="width: 0.1%; ">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="description-column" style="width: 0.1%; ">Description</th>
+      <td mat-cell *matCellDef="let task" class="description-column" style="width: 0.1%;">{{ task.description }}</td>
+    </ng-container>
+
+    <!-- Priority Column -->
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+      <td mat-cell *matCellDef="let task">{{ task.priority }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let task">{{ task.status }}</td>
+    </ng-container>
+
+    <!-- Deadline Column -->
+    <ng-container matColumnDef="deadline">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Deadline</th>
+      <td mat-cell *matCellDef="let task">{{ task.deadline }}</td>
+    </ng-container>
+    <ng-container matColumnDef="branch">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>branch</th>
+      <td mat-cell *matCellDef="let task">{{ task.branchCode }}&nbsp;-&nbsp;{{task.branchName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="manager">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Manager</th>
+      <td mat-cell *matCellDef="let task">{{ task.managerUsername }}</td>
+    </ng-container>
+
+    <!-- Assignee Column -->
+    <ng-container matColumnDef="assignee">
+      <th mat-header-cell *matHeaderCellDef>Assignee</th>
+      <td mat-cell *matCellDef="let task">
+        {{ task.assigneeUsername }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="remark">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Remark</th>
+      <td mat-cell *matCellDef="let task">{{ task.remark }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let task">
+        <button
+          mat-icon-button
+          *ngIf="task.status === 'Draft'"
+          title="Send Request"
+          (click)="sendTask(task)"
+        >
+          <fa-icon [icon]="faPaperPlane"></fa-icon>
+        </button>
+        &nbsp;
+        <button
+          title="Edit"
+          mat-icon-button
+          *ngIf="task.status === 'Draft'"
+          (click)="editTask(task)"
+        >
+          <fa-icon [icon]="faPen"></fa-icon>
+        </button>
+        &nbsp;
+        <button
+          mat-icon-button
+          title="Delete"
+          *ngIf="task.status === 'Draft'"
+          (click)="deleteTask(task.id)"
+        >
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Table Header & Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  </div>
+
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="totalTasks"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+  ></mat-paginator>
+</div>

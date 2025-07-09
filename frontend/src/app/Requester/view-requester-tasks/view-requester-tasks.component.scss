@@ -1,0 +1,249 @@
+/* General Styles */
+.manage-tasks-container {
+  margin: 20px auto;
+  // max-width: 1200px;
+  width:100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  /* Ensure content is scrollable on smaller screens */
+}
+
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-width: 1000px; /* Ensure it doesn't overflow parent container */
+}
+
+.tasks-table {
+  min-width: 1000px; /* Set a minimum width for the table */
+}
+
+
+/* In your component stylesheet (e.g., table.component.css or table.component.scss) */
+
+
+
+
+/* Filter Input Styles */
+
+
+.filter-input {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.filter-input mat-form-field {
+  width: 100%;
+}
+
+.filter-input input {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fc;
+  color: #495057;
+  transition: border-color 0.3s ease;
+}
+
+.filter-input input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Table Styles */
+table.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  background: linear-gradient(to bottom, #ffffff, #f8f9fc);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+th {
+  padding: 16px;
+  text-align: left;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #0056b3;
+}
+
+td {
+  padding: 12px 16px;
+  color: #495057;
+  border-bottom: 1px solid #dee2e6;
+}
+
+tr {
+  transition: background-color 0.3s ease;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e9f5ff;
+}
+
+td select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #495057;
+  transition: border-color 0.3s ease;
+}
+
+td select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Action Button Styles */
+button {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+}
+
+button mat-icon-button {
+  background: none;
+  padding: 8px;
+  color: #007bff;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+button mat-icon-button:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.fa-icon {
+  font-size: 16px;
+}
+
+th.actions {
+  text-align: center;
+}
+
+/* Paginator Styles */
+mat-paginator {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f8f9fc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .manage-tasks-container {
+    padding: 20px;
+  }
+
+  table.tasks-table {
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  thead {
+    display: none;
+    /* Hide table headers */
+  }
+
+  tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 10px;
+    color: #6c757d;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td select {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .filter-input {
+    margin-bottom: 15px;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  th,
+  td {
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+  }
+
+  tr {
+    margin-bottom: 15px;
+  }
+}

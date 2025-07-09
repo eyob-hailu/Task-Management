@@ -1,0 +1,111 @@
+<div class="nav-items">
+  @if (isAdmin) {
+  <div
+    class="nav-item"
+    routerLink="/admin/dashboard"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <fa-icon [icon]="faDashboard"></fa-icon>
+    <span>Dashboard</span>
+  </div>
+
+  <div class="nav-item" routerLink="/admin/manage-users" routerLinkActive="active">
+    <fa-icon [icon]="faUserCog"></fa-icon>
+    <span>Manage Users</span>
+  </div>
+  <div class="nav-item" routerLink="/admin/manage-branch" routerLinkActive="active">
+    <fa-icon [icon]="faBuilding"></fa-icon>
+    <span>Manage Branches</span>
+  </div>
+
+  <!-- <div class="nav-item" routerLink="add-user" routerLinkActive="active">
+    <fa-icon [icon]="faUserPlus"></fa-icon>
+    <span>Add Users</span>
+  </div> -->
+
+  }
+  <!-- Admin -->
+
+  <!-- Manager start-->
+  @if (isManager) {
+  <div
+    class="nav-item"
+    routerLink="/manager/manager-dashboard"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <fa-icon [icon]="faDashboard"></fa-icon>
+    <span>Dashboard</span>
+  </div>
+
+  <div class="nav-item" routerLink="/manager/manage-tasks" routerLinkActive="active">
+    <fa-icon [icon]="faTasks"></fa-icon>
+    <span>Manage Tasks</span>
+  </div>
+
+  }
+
+  <!-- Manager end -->
+
+  <!--employee start-->
+  @if (isEmployee) {
+  <div
+    class="nav-item"
+    routerLink="/employee/employee-dashboard"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <fa-icon [icon]="faDashboard"></fa-icon>
+    <span>Dashboard</span>
+  </div>
+
+  <div class="nav-item" routerLink="/employee/view-tasks" routerLinkActive="active">
+    <fa-icon [icon]="faClipboardList"></fa-icon>
+    <span>My Tasks</span>
+  </div>
+
+  }
+
+  <!--employee end-->
+
+  <!--Requester start-->
+  <!--employee start-->
+  @if (isRequester) {
+  <div
+    class="nav-item"
+    routerLink="/requester/requester-dashboard"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <fa-icon [icon]="faDashboard"></fa-icon>
+    <span>Dashboard</span>
+  </div>
+
+  <div
+    class="nav-item"
+    routerLink="/requester/view-requester-tasks"
+    routerLinkActive="active"
+  >
+    <fa-icon [icon]="faClipboardList"></fa-icon>
+    <span>My Tasks</span>
+  </div>
+
+  <div class="nav-item" routerLink="/requester/add-task" routerLinkActive="active">
+    <fa-icon [icon]="faPlus"></fa-icon>
+    <span>Add Task</span>
+  </div>
+
+  }
+  <!--Requester end-->
+
+  <div class="nav-item" routerLink="/change-password" routerLinkActive="active">
+    <fa-icon [icon]="faKey"></fa-icon>
+    <span>Change Password</span>
+  </div>
+
+  <div class="nav-item" (click)="logout()" routerLinkActive="active">
+    <fa-icon [icon]="faSignOutAlt"></fa-icon>
+    <span>Log Out</span>
+  </div>
+</div>
