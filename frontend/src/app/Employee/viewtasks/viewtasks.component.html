@@ -1,0 +1,60 @@
+<div *ngIf="tasks.length > 0" class="tasks-container">
+  <div *ngFor="let task of tasks" class="task-card">
+    <h3>{{ task.title }}</h3>
+    <p><strong>Description:</strong> {{ task.description }}</p>
+    <p><strong>Priority:</strong> {{ task.priority }}</p>
+    <p>
+      <strong>Deadline:</strong>
+      <input type="date" disabled [value]="task.deadline" class="date-input" />
+    </p>
+    <p><strong>Requested by:</strong> {{ task.creatorUsername }}</p>
+    <p><strong>Assigned by:</strong> {{ task.managerUsername }}</p>
+    <p><strong>Branch:</strong> {{ task.branchCode }}&nbsp;-&nbsp;{{task.branchName}}</p>
+    @if (task.status=="Completed") {
+    <p><strong>Remark:</strong> {{ task.remark }}</p>
+    }
+    <p *ngIf="!task.isExpired && task.status !== 'Completed'" >Days Remaining: {{ task.daysRemaining }}</p>
+    <p *ngIf="task.isExpired" class="expired-note">This task is expired!</p>
+
+    @if(!task.isExpired){
+
+    <form [formGroup]="taskComplete">
+      @if (task.status!=="Completed") {
+      <textarea
+        class="form-control"
+        [readonly]="task.status === 'Completed'"
+        formControlName="remark"
+        name="remark"
+        id="remark"
+        placeholder="Remark of the task"
+      ></textarea>
+      }
+      
+
+      <button
+        type="button"
+        (click)="updateTaskStatus(task)"
+        [disabled]="task.status === 'Completed'"
+        class="status-btn"
+        [ngClass]="{
+          'pending-btn': task.status === 'Assigned',
+          'completed-btn': task.status === 'Completed'
+        }"
+      >
+        {{ task.status === "Assigned" ? "Complete Task" : "Completed" }}
+      </button>
+      @if (task.status!=="Completed") {
+      <div class="errorMessages" *ngIf="errorMessage" style="color: red" >
+        <p style="color: red; align-items: center; justify-content: center">
+          {{ errorMessage }}
+        </p>
+      </div>
+    }
+    </form>
+  }
+  </div>
+</div>
+
+<div *ngIf="tasks.length === 0" class="no-tasks-found">
+  <p>No tasks available.</p>
+</div>

@@ -1,0 +1,108 @@
+/* General Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+/* Login Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* Login Card */
+.login-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Card Heading */
+.login-card h1 {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Form Labels */
+label {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #333333;
+  margin-top: 5px;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #05c4dd;
+  box-shadow: 0 0 5px rgba(5, 196, 221, 0.5);
+}
+
+/* Submit Button */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #05c4dd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #048ba8;
+}
+
+/* Extra Links */
+.extra-links {
+  margin-top: 15px;
+}
+
+.extra-links a {
+  font-size: 14px;
+  color: #05c4dd;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.extra-links a:hover {
+  color: #048ba8;
+}

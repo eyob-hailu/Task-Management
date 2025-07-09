@@ -1,0 +1,19 @@
+.header {
+  height: 70px;
+  padding: 20px 50px;
+  background-color: rgb(1, 38, 69);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 5px 5px 5px #939393;
+
+  .logo {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .user {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+}

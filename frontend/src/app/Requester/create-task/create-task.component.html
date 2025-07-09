@@ -1,0 +1,55 @@
+<div class="task-container">
+  <div>
+    <h2>Create Task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Task Title:</label>
+        <input
+          id="title"
+          formControlName="title"
+          type="text"
+          placeholder="Please enter task title"
+        />
+      </div>
+
+      <div>
+        <label for="description">Task Description:</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          type="text"
+          placeholder="Please enter task description"
+        ></textarea>
+      </div>
+      <div class="time">
+        <div>
+          <label for="priority">Task Priority:</label>
+          <select id="priority" name="priority" formControlName="priority">
+            <option value=""></option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <label for="deadline">Deadline</label>
+        <input
+          formControlName="deadline"
+          type="date"
+          id="deadline"
+          name="deadline"
+          [attr.min]="today"
+          placeholder=" "
+          (keydown)="preventTyping($event)"
+        />
+      </div>
+      <button type="submit">Create Task</button>
+      <div *ngIf="errorMessages" class="error-messages">
+        <p>{{ errorMessages }}</p>
+      </div>
+      <div *ngIf="successMessage" class="success-messages">
+        <p>{{ successMessage }}</p>
+      </div>
+    </form>
+  </div>
+</div>

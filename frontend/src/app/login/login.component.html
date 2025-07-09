@@ -1,0 +1,47 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Login</h1>
+
+    <!-- Display general error message if form is invalid after submission -->
+
+    <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          placeholder="Enter your username"
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <!-- Display error message if login failed -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
+
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+
+    <div class="extra-links" >
+    <a href="forgot-password" routerLink="/forgot-password">Forgot Password</a>
+    
+      
+    </div>
+  </div>
+</div>

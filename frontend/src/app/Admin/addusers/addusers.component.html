@@ -1,0 +1,92 @@
+<div class="register-container">
+  <h2>User Registration</h2>
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput id="firstname" formControlName="firstname" type="text" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Middle Name</mat-label>
+        <input matInput id="middlename" formControlName="middlename" type="text" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput id="lastname" formControlName="lastname" type="text" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput id="phonenumber" formControlName="phonenumber" type="text" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose Location</mat-label>
+        <mat-select
+          id="officeType"
+          formControlName="officeType"
+          (selectionChange)="onOfficeTypeChange($event)"
+        >
+          <mat-option value="" disabled>Select office type</mat-option>
+          <mat-option value="head_office">Head Office</mat-option>
+          <mat-option value="branch">Branch</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="showBranchSelect">
+        <mat-form-field appearance="fill">
+          <mat-label>Select Branch</mat-label>
+          <mat-select id="branch" formControlName="branch">
+            <mat-option value="" disabled>Select branch</mat-option>
+            <mat-option *ngFor="let branch of branches" [value]="branch.id">
+              {{ branch.branchCode }} &nbsp;{{ "   -   " }}&nbsp; {{ branch.branchName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput id="email" formControlName="email" type="email" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput id="username" formControlName="username" type="text" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput id="password" formControlName="password" type="password" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput id="confirmPassword" formControlName="confirmPassword" type="password" />
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit"  >Register</button>
+    <div *ngIf="errorMessages" class="error-messages">
+      <p>{{ errorMessages }}</p>
+    </div>
+  </form>
+</div>

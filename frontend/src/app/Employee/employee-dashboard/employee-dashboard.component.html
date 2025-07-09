@@ -1,0 +1,54 @@
+<div class="mat-card-container">
+  <!-- Manager Dashboard Card (Displaying Alone at the Top) -->
+  <mat-card class="manager-dashboard-card">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"></div>
+      <mat-card-title>Employee Dashboard</mat-card-title>
+      <mat-card-subtitle>Overview of your tasks</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Welcome to Employee dashboard! Here you can view assigned tasks and
+        track progress.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="mat-card-container">
+  <!-- Other Cards Below -->
+  <mat-card class="mat-card" [routerLink]="['/employee/view-tasks']" >
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faTasks" size="2x"></fa-icon></div>
+      <mat-card-title>{{ totalTasksAssigned }}</mat-card-title>
+      <mat-card-subtitle>Total tasks</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- <p>Description</p> -->
+    </mat-card-content>
+  </mat-card>
+
+
+
+  <mat-card class="mat-card" [routerLink]="['/employee/view-tasks']" [queryParams]="{ filter: 'Completed' }">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faCheckSquare" size="2x"></fa-icon></div>
+      <mat-card-title>{{ completedTasks }}</mat-card-title>
+      <mat-card-subtitle>Completed Tasks</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- <p>Description</p> -->
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mat-card" [routerLink]="['/employee/view-tasks']" [queryParams]="{ filter: 'Assigned' }">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar"><fa-icon [icon]="faTimesSquare" size="2x"></fa-icon></div>
+      <mat-card-title>{{ incompletetasks }}</mat-card-title>
+      <mat-card-subtitle>Incomplete tasks</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- <p>Description</p> -->
+    </mat-card-content>
+  </mat-card>
+</div>
